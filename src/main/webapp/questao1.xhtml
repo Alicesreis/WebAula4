@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Cadastrar novo usuário</title>
+  <style>
+	    .ui-button {
+			background: rgb(85, 128, 207)  ;
+			 
+		}
+    </style>
+</h:head>
+<h:body>
+
+
+	<h:form>
+	    <h3> Cadastro de usuário:</h3>  
+	    <p:panelGrid columns="2" cellpadding="5">	
+	    	
+			<h:outputText value="Nome: " />
+			<p:inputText id="nome" value="#{usuarioBean.usuario.nome}" />
+
+			<h:outputText value="Usuario: " />
+			<p:inputText id="usuarioNome" value="#{usuarioBean.usuario.usuarioNome}" />
+			
+			<h:outputText for="senha" value="Senha:" />
+			<p:password id="senha" value="#{usuarioBean.usuario.senha}" required="true" />
+		</p:panelGrid>
+		 
+		<p:commandButton id="cadastrar" value="Cadastrar" 
+				         title="cadastrar" update="listaUsuarios"
+				         action="#{usuarioBean.addUsuario}" />
+			
+			<p:commandButton value="Limpar" update="listaUsuarios" 
+			                 ajax="true" immediate="true" type="reset"/>
+	</h:form>
+	<h2>Lista de usuarios</h2>
+	<p:dataTable id="listaUsuarios" value="#{usuarioBean.listaUsuarios}" var="c">
+		
+		<p:column headerText="Nome do usuario">
+			<h:outputText id="nome" value="#{c.nome}" />
+			
+		</p:column>
+
+		<p:column headerText="Usuario">
+			<h:outputText id="usuarioNome" value="#{c.usuarioNome}" />
+		</p:column>
+
+	</p:dataTable>
+	
+</h:body>
+</html>
